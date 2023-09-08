@@ -40,5 +40,5 @@ try {
   fetchData();
   // mongoDisconnect();
 } catch (error) {
-  //   data = JSON.parse(fs.readFileSync(path.join(__dirname, "countries.json")));
+  console.error(error);
 }
