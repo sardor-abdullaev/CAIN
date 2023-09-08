@@ -1,8 +1,6 @@
 const { mongoConnect, mongoDisconnect } = require("../services/mongo");
 const Country = require("../models/countries.mongo");
 
-mongoConnect();
-
 async function fetchData() {
   const response = await fetch("https://restcountries.com/v3.1/all");
   const countries = await response.json();
@@ -37,7 +35,8 @@ async function fetchData() {
     });
   });
 }
-try {  
+try {
+  mongoConnect();
   fetchData();
   // mongoDisconnect();
 } catch (error) {
