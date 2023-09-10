@@ -14,4 +14,13 @@ async function getCountry(req, res) {
   );
 }
 
-module.exports = { getAllCountries, getCountry };
+async function getCountryByAlpha(req, res) {
+  const { alpha } = req.params;
+  return res.status(200).json(
+    await Countries.find({
+      cioc: alpha,
+    })
+  );
+}
+
+module.exports = { getAllCountries, getCountry, getCountryByAlpha };
