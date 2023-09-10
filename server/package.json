@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
-    "watch": "nodemon src/server.js"
+    "watch": "nodemon src/server.js",
+    "upload-data-from-file":"node src/data/uploadDataFromFile.js",
+    "upload-data-from-api":"node src/data/uploadDataFromAPI.js"
   },
   "keywords": [],
   "author": "",
