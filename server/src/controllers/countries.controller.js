@@ -1,6 +1,6 @@
 const Countries = require("../models/countries.mongo");
 
-async function getAllCountries(req, res) {
+async function getAllCountry(req, res) {
   return res.status(200).json(await Countries.find({}));
 }
 
@@ -23,4 +23,4 @@ async function getCountryByAlpha(req, res) {
   );
 }
 
-module.exports = { getAllCountries, getCountry, getCountryByAlpha };
+module.exports = { getAllCountry, getCountry, getCountryByAlpha };
