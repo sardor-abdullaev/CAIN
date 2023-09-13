@@ -23,4 +23,19 @@ async function getCountryByAlpha(req, res) {
   );
 }
 
-module.exports = { getAllCountry, getCountry, getCountryByAlpha };
+async function getCountriesByRegion(req, res) {
+  const { region } = req.params;
+  // return res.status(200).json(await Countries.find({ region }));
+  return res.status(200).json(
+    await Countries.find({
+      region: { $regex: region, $options: "i" },
+    })
+  );
+}
+
+module.exports = {
+  getAllCountry,
+  getCountry,
+  getCountryByAlpha,
+  getCountriesByRegion,
+};
