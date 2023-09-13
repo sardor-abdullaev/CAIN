@@ -1,17 +1,17 @@
 {
   "name": "countries-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Countries and it's neighbours API",
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
     "watch": "nodemon src/server.js",
-    "upload-data-from-file":"node src/data/uploadDataFromFile.js",
-    "upload-data-from-api":"node src/data/uploadDataFromAPI.js"
+    "upload-data-from-file": "node src/data/uploadDataFromFile.js",
+    "upload-data-from-api": "node src/data/uploadDataFromAPI.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sardor Abdullayev",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
