@@ -4,9 +4,12 @@ const {
   getCountry,
   getCountryByAlpha,
   getCountriesByRegion,
+  checkCountry,
 } = require("../controllers/countries.controller");
 
 const countriesRouter = express.Router();
+
+countriesRouter.param("country", checkCountry);
 
 countriesRouter.get("/all", getAllCountry);
 countriesRouter.get("/:country", getCountry);

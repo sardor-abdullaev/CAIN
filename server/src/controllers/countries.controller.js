@@ -1,17 +1,30 @@
 const Countries = require("../models/countries.mongo");
 
+async function getCountryByName(name) {
+  return await Countries.find({
+    country_name: { $regex: name, $options: "i" },
+  });
+}
+
+function checkCountry(req, res, next, val) {
+  console.log("check country " + val);
+  const result = getCountryByName(val);
+  if (!result.length) {
+    return res
+      .status(404)
+      .json({ status: "fail", message: "Not found such a country" });
+  }
+  next();
+}
+
 async function getAllCountry(req, res) {
   return res.status(200).json(await Countries.find({}));
 }
 
-async function getCountry(req, res) {
+function getCountry(req, res) {
   // {'$regex': thename,$options:'i'}
   const { country: countryName } = req.params;
-  return res.status(200).json(
-    await Countries.find({
-      country_name: { $regex: countryName, $options: "i" },
-    })
-  );
+  return res.status(200).json(getCountryByName(countryName));
 }
 
 async function getCountryByAlpha(req, res) {
@@ -38,4 +51,5 @@ module.exports = {
   getCountry,
   getCountryByAlpha,
   getCountriesByRegion,
+  checkCountry,
 };
