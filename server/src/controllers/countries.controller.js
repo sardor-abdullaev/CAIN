@@ -1,14 +1,16 @@
 const Countries = require("../models/countries.mongo");
 
 async function getCountryByName(name) {
-  return await Countries.find({
+  const result = await Countries.find({
     country_name: { $regex: name, $options: "i" },
   });
+  return result;
 }
 
-function checkCountry(req, res, next, val) {
+async function checkCountry(req, res, next, val) {
   console.log("check country " + val);
-  const result = getCountryByName(val);
+  const result = await getCountryByName(val);
+  // console.log(result);
   if (!result.length) {
     return res
       .status(404)
@@ -21,10 +23,10 @@ async function getAllCountry(req, res) {
   return res.status(200).json(await Countries.find({}));
 }
 
-function getCountry(req, res) {
+async function getCountry(req, res) {
   // {'$regex': thename,$options:'i'}
   const { country: countryName } = req.params;
-  return res.status(200).json(getCountryByName(countryName));
+  return res.status(200).json(await getCountryByName(countryName));
 }
 
 async function getCountryByAlpha(req, res) {
